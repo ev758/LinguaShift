@@ -1,0 +1,6 @@
+:root {
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font: 18px var(--sans);
+  background-color: #E1EED7;
+  text-align: center;
+}
