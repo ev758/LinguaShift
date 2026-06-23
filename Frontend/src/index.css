@@ -1,6 +1,28 @@
-:root {
+body {
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   font: 18px var(--sans);
   background-color: #E1EED7;
   text-align: center;
+}
+
+.title {
+  margin-top: 200px;
+}
+
+.language-container {
+  display: flex;
+  justify-content: center;
+}
+
+.language-options {
+  width: 180px;
+  height: 38px;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.language-textbox {
+  margin: 0px 30px;
 }
