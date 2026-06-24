@@ -15,10 +15,6 @@ class LanguageList(generics.ListAPIView):
 
         #loops through each language object, and stores their name and language code in a dictionary as key-value pairs
         for language in deepl_client.get_source_languages():
-            if (language.name == "English"):
-                language_dict[language.name] = "EN-US"
-                continue
-
             language_dict[language.name] = language.code
         
         return JsonResponse(language_dict)

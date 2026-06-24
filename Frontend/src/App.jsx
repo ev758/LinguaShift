@@ -33,7 +33,7 @@ function App() {
     const languageTranslation = async () => {
       //declarations
       const inputLanguageCode = document.getElementById("inputLanguageOptions").value;
-      const outputLanguageCode = document.getElementById("outputLanguageOptions").value;
+      const outputLanguageCode = (document.getElementById("outputLanguageOptions").value === "EN") ? "EN-US" : document.getElementById("outputLanguageOptions").value;
       const translatedLanguage = document.getElementById("translatedLanguageText");
 
       try {
