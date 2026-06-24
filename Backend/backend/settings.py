@@ -9,7 +9,6 @@ load_dotenv(env)
 #environment variables
 DJANGO_SERVER = os.getenv("DJANGO_SERVER")
 VITE = os.getenv("VITE")
-HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

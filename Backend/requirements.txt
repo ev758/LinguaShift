@@ -1,16 +1,12 @@
 argon2-cffi
 asgiref
+deepl
 Django
 django-cors-headers
 djangorestframework
 djangorestframework-simplejwt
-tiktoken
-protobuf
 psycopg2-binary
 PyJWT
 python-dotenv
 pytz
-sentencepiece
 sqlparse
-torch
-transformers

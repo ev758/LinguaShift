@@ -57,6 +57,12 @@ function App() {
 
     //When a user has stopped typing, sets timeout for 1 second to perform language translation
     const delayDebounceTranslation = setTimeout(() => {
+      const inputLanguageText = document.getElementById("inputLanguageText").value;
+      
+      if (inputLanguageText.trim() === "") {
+        return;
+      }
+
       console.log("User stopped typing. Performing language Translation.");
       languageTranslation();
     }, 1000);
@@ -91,7 +97,13 @@ function App() {
             }
 
             <Form.Group className="mb-3 language-textbox">
-              <Form.Control as="textarea" rows={10} cols={50} onChange={(event) => setLanguageText(event.target.value)}/>
+              <Form.Control
+                as="textarea"
+                id="inputLanguageText"
+                rows={10}
+                cols={50}
+                onChange={(event) => setLanguageText(event.target.value)}
+              />
             </Form.Group>
           </div>
 
