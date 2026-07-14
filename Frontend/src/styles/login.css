@@ -1,0 +1,17 @@
+.login-title {
+    margin: 20px 0px 25px 0px;
+}
+
+.login {
+    width: 450px;
+    height: 300px;
+}
+
+.form-links {
+    margin-top: 0px;
+}
+
+.form-links a {
+    text-decoration: none;
+    margin: 0px 15px;
+}

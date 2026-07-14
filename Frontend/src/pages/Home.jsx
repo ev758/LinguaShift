@@ -1,18 +1,22 @@
-import axios from "axios";
+import api from "../api.js";
 import { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
+import { Link } from "react-router";
+import getUser from "../utils/getUser.js";
+import '../styles/home.css';
 
-function App() {
+const Home = () => {
   //declarations
   const [languages, setLanguages] = useState({});
   const [languageText, setLanguageText] = useState("");
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     //gets languages
     const getLanguages = async () => {
       try {
         //HTTP GET request
-        const response = await axios.get(import.meta.env.VITE_DJANGO_SERVER + "languages/");
+        const response = await api.get("languages/");
 
         if (response.status !== 200) {
           throw new Error("Could not get languages");
@@ -25,6 +29,7 @@ function App() {
       }
     }
 
+    getUser(setUser);
     getLanguages();
   }, []);
 
@@ -38,7 +43,7 @@ function App() {
 
       try {
         //HTTP POST request
-        const response = await axios.post(import.meta.env.VITE_DJANGO_SERVER + "translation/", {
+        const response = await api.post("translation/", {
           inputLanguageCode: inputLanguageCode,
           outputLanguageCode: outputLanguageCode,
           languageText: languageText,
@@ -74,6 +79,28 @@ function App() {
   return (
     <>
       <div>
+        {
+          //If a user is not logged in, display login and sign up buttons.
+          (Object.keys(user).length === 0) ?
+          //Login and Sign Up Buttons
+          <div className="account-buttons">
+            <Button href="/login" variant="dark">Log in</Button>
+            <Button href="/sign-up" variant="dark">Sign up</Button>
+          </div>
+          :
+          //Account Button
+          <div>
+            <DropdownButton className="account" title={<span className="material-icons">person</span>} variant="light">
+              <Dropdown.Item href="/account">View Account</Dropdown.Item>
+              <Dropdown.Item onClick={
+                () => {
+                  localStorage.clear();
+                  window.location.reload();
+                }
+              }>Logout</Dropdown.Item>
+            </DropdownButton>
+          </div>
+        }
         <h1 className="title">LinguaShift</h1>
 
         <div className="language-container">
@@ -99,9 +126,8 @@ function App() {
             <Form.Group className="mb-3 language-textbox">
               <Form.Control
                 as="textarea"
+                className="textbox"
                 id="inputLanguageText"
-                rows={10}
-                cols={50}
                 onChange={(event) => setLanguageText(event.target.value)}
               />
             </Form.Group>
@@ -127,7 +153,7 @@ function App() {
             }
 
             <Form.Group className="mb-3 language-textbox">
-              <Form.Control as="textarea" id="translatedLanguageText" rows={10} cols={50}/>
+              <Form.Control as="textarea" className="textbox" id="translatedLanguageText"/>
             </Form.Group>
           </div>
         </div>
@@ -136,4 +162,4 @@ function App() {
   )
 }
 
-export default App;
+export default Home;

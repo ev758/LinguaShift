@@ -1,0 +1,68 @@
+/* Login and Sign Up Buttons */
+.account-buttons {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 15px;
+}
+
+.account-buttons a {
+  margin: 0px 10px;
+  text-decoration: none;
+}
+
+/* Account Button */
+.material-icons {
+  font-size: 30px;
+}
+
+.account {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.dropdown-toggle {
+  width: 77px;
+  height: 72px;
+  border-radius: 50px;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown-menu {
+  min-width: 0%;
+  width: 130px;
+}
+
+.title {
+  margin-top: 200px;
+}
+
+/* Language Translation */
+.language-container {
+  display: flex;
+  justify-content: center;
+}
+
+.language-options {
+  width: 180px;
+  height: 38px;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.language-textbox {
+  margin: 0px 30px;
+}
+
+.textbox {
+  width: 500px;
+  height: 300px;
+}

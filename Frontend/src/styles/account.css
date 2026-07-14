@@ -1,0 +1,23 @@
+.account-title {
+    margin-top: 50px;
+}
+
+.account-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    margin: 30px 0px 10px 0px;
+}
+
+.user-account {
+    width: 450px;
+    height: 400px;
+}
+
+.user-account-buttons {
+    margin: 20px 0px 30px 0px;
+}
+
+.account-update-button, .translation-history-button {
+    margin: 0px 20px;
+}

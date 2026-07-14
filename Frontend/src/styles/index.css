@@ -1,0 +1,30 @@
+body {
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font: 18px var(--sans);
+  background-color: #E1EED7;
+  text-align: center;
+}
+
+/* Forms */
+.auth-title {
+    margin-top: 90px;
+}
+
+.forms {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 30px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+form label {
+  float: left;
+  margin-left: 30px;
+}
+
+form input {
+  float: left;
+  margin-left: 30px;
+  width: 380px;
+}
