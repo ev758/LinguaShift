@@ -1,7 +1,7 @@
 import deepl
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 import os
@@ -9,7 +9,8 @@ from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
-from .serializers import UserSerializer
+from .models import TranslationHistory
+from .serializers import UserSerializer, TranslationHistorySerializer
 
 API_KEY = os.getenv("API_KEY")
 deepl_client = deepl.DeepLClient(API_KEY)
@@ -109,3 +110,29 @@ class Account(generics.RetrieveUpdateDestroyAPIView):
         user.save()
 
         return JsonResponse(data, status=200)
+
+class TranslationHistoryList(generics.ListCreateAPIView):
+    serializer_class = TranslationHistorySerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return TranslationHistory.objects.filter(account=user)
+    
+    def perform_create(self, serializer):
+        if serializer.is_valid():
+            serializer.save(account=self.request.user)
+        else:
+            print(serializer.errors)
+
+class DeleteTranslationHistory(generics.DestroyAPIView):
+    serializer_class = TranslationHistorySerializer
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, pk):
+        user = self.request.user
+        translations = TranslationHistory.objects.filter(account=user)
+
+        translations.delete()
+
+        return HttpResponse(status=204)

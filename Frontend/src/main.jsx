@@ -7,6 +7,7 @@ import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import Account from './pages/Account.jsx';
+import TranslationHistory from './pages/TranslationHistory.jsx';
 import HomeLayout from './layouts/HomeLayout.jsx';
 import AuthLayout from './layouts/AuthLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -31,6 +32,14 @@ createRoot(document.getElementById('root')).render(
                 <Account/>
               </ProtectedRoute>
             }
+          />
+          <Route
+            path="translation-history"
+            element={
+            <ProtectedRoute>
+              <TranslationHistory/>
+            </ProtectedRoute>
+          }
           />
         </Route>
       </Route>

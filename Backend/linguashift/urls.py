@@ -9,6 +9,9 @@ urlpatterns = [
     path('signup/', views.SignUp.as_view()),
     path('authenticate/', views.Authenticate.as_view()),
     path('account/', views.Account.as_view()),
-    path('account/update/<int:pk>/', views.Account.as_view()),
-    path('account/delete/<int:pk>/', views.Account.as_view()),
+    path('account/<int:pk>/update/', views.Account.as_view()),
+    path('account/<int:pk>/delete/', views.Account.as_view()),
+    path('account/translation-history/', views.TranslationHistoryList.as_view()),
+    path('account/<int:pk>/translation-history/save/', views.TranslationHistoryList.as_view()),
+    path('account/<int:pk>/translation-history/delete/', views.DeleteTranslationHistory.as_view()),
 ]

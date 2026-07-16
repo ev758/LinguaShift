@@ -1,8 +1,9 @@
 import api from "../api.js";
+import { ACCESS_TOKEN } from "../constants.js";
 import { useEffect, useState } from 'react';
 import { Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
 import { Link } from "react-router";
-import getUser from "../utils/getUser.js";
+import getUser from "../utils/get_user.js";
 import '../styles/home.css';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
   const [languages, setLanguages] = useState({});
   const [languageText, setLanguageText] = useState("");
   const [user, setUser] = useState({});
+  const token = localStorage.getItem(ACCESS_TOKEN)
 
   useEffect(() => {
     //gets languages
@@ -53,7 +55,15 @@ const Home = () => {
           throw new Error("Could not translate language");
         }
 
-        translatedLanguage.textContent = response.data.translatedText;
+        const translatedText = response.data.translatedText;
+        translatedLanguage.textContent = translatedText;
+
+        if (!token) {
+          return;
+        }
+        else {
+          saveTranslation(translatedText)
+        }
       }
       catch (error) {
         console.error(error);
@@ -76,12 +86,37 @@ const Home = () => {
     return () => clearTimeout(delayDebounceTranslation)
   }, [languageText]);
 
+  const saveTranslation = async (translatedText) => {
+    //declarations
+    const inputLanguageSelect = document.getElementById("inputLanguageOptions");
+    const outputLanguageSelect = document.getElementById("outputLanguageOptions");
+    const inputLanguage = inputLanguageSelect.options[inputLanguageSelect.selectedIndex].text;
+    const outputLanguage = outputLanguageSelect.options[outputLanguageSelect.selectedIndex].text;
+
+    try {
+      //HTTP POST request
+      const response = await api.post(`account/${user.id}/translation-history/save/`, {
+        language: inputLanguage,
+        text: languageText,
+        translated_language: outputLanguage,
+        translated_text: translatedText
+      });
+
+      if (response.status !== 201) {
+        throw new Error("Could not save translation");
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <div>
         {
           //If a user is not logged in, display login and sign up buttons.
-          (Object.keys(user).length === 0) ?
+          (!token) ?
           //Login and Sign Up Buttons
           <div className="account-buttons">
             <Button href="/login" variant="dark">Log in</Button>

@@ -3,7 +3,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants.js";
 import { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router';
-import getUser from "../utils/getUser.js";
+import getUser from "../utils/get_user.js";
 import AccountImage from "../assets/account.jpg";
 import "../styles/account.css";
 
@@ -72,7 +72,7 @@ const Account = () => {
         }
 
         //HTTP PATCH request
-        const response = await api.patch(`account/update/${user.id}/`, accountData);
+        const response = await api.patch(`account/${user.id}/update/`, accountData);
 
         if (response.status !== 200) {
           throw new Error("Could not update account");
@@ -89,7 +89,7 @@ const Account = () => {
   const deleteAccount = async () => {
     try {
       //HTTP DELETE request
-      const response = await api.delete(`account/delete/${user.id}/`);
+      const response = await api.delete(`account/${user.id}/delete/`);
 
       if (response.status !== 204) {
         throw new Error("Could not delete account");
@@ -162,7 +162,7 @@ const Account = () => {
           />
           <Button
             className="translation-history-button"
-            href="/translation-history"
+            href="/account/translation-history"
             variant="dark"
           >View Translation History</Button>
         </div>

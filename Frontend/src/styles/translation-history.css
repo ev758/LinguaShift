@@ -1,0 +1,14 @@
+.translation-title {
+    margin-top: 70px;
+}
+
+.table-translations {
+    margin-top: 50px;
+}
+
+.table-title {
+    text-align: center;
+    background-color: black;
+    caption-side: top;
+    color: white;
+}
