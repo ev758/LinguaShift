@@ -12,3 +12,11 @@ class TranslationHistory(models.Model):
 
     class Meta:
         db_table = "translation_history"
+
+class PasswordReset(models.Model):
+    email = models.EmailField()
+    pw_reset_token = models.CharField(max_length=100)
+    account = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "password_reset"

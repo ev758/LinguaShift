@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import SignUp from './pages/SignUp.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
+import PasswordReset from './pages/PasswordReset.jsx';
 import Account from './pages/Account.jsx';
 import TranslationHistory from './pages/TranslationHistory.jsx';
 import HomeLayout from './layouts/HomeLayout.jsx';
@@ -21,7 +22,10 @@ createRoot(document.getElementById('root')).render(
         <Route element={<AuthLayout/>}>
           <Route path="login" element={<Login/>}/>
           <Route path="sign-up" element={<SignUp/>}/>
-          <Route path="forgot-password" element={<ForgotPassword/>}/>
+          <Route path="forgot-password">
+            <Route index element={<ForgotPassword/>}/>
+            <Route path=":passwordResetToken" element={<PasswordReset/>}/>
+          </Route>
         </Route>
 
         <Route path="account">

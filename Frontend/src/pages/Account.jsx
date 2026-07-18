@@ -2,7 +2,7 @@ import api from "../api.js";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants.js";
 import { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import getUser from "../utils/get_user.js";
 import AccountImage from "../assets/account.jpg";
 import "../styles/account.css";

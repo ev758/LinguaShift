@@ -2,7 +2,6 @@ import api from "../api.js";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants.js";
 import { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router';
 import getUser from "../utils/get_user.js";
 import "../styles/translation-history.css";
 
@@ -10,7 +9,6 @@ const TranslationHistory = () => {
   //declarations
   const [translationHistory, setTranslationHistory] = useState([]);
   const [user, setUser] = useState({});
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getTranslations = async () => {

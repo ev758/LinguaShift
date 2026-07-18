@@ -2,7 +2,6 @@ import api from "../api.js";
 import { ACCESS_TOKEN } from "../constants.js";
 import { useEffect, useState } from 'react';
 import { Button, Dropdown, DropdownButton, Form } from 'react-bootstrap';
-import { Link } from "react-router";
 import getUser from "../utils/get_user.js";
 import '../styles/home.css';
 

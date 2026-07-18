@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import TranslationHistory
+from .models import TranslationHistory, PasswordReset
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,5 +15,11 @@ class UserSerializer(serializers.ModelSerializer):
 class TranslationHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = TranslationHistory
+        fields = "__all__"
+        extra_kwargs = {"account": {"read_only": True}}
+
+class PasswordResetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PasswordReset
         fields = "__all__"
         extra_kwargs = {"account": {"read_only": True}}
