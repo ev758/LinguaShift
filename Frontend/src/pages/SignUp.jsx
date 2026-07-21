@@ -1,11 +1,13 @@
 import api from "../api.js";
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
+import validation from "../utils/validation.js";
 import '../styles/signup.css';
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
   const createAccount = async (event) => {
     event.preventDefault();
@@ -16,7 +18,8 @@ const SignUp = () => {
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    try {
+    if (validation()) {
+      try {
       //HTTP POST request
       const response = await api.post("signup/", {
         first_name: firstName,
@@ -31,15 +34,33 @@ const SignUp = () => {
       }
 
       navigate("/login");
+      }
+      catch (error) {
+        console.error(error);
+      }
     }
-    catch (error) {
-      console.error(error);
+    else {
+      setShow(true);
     }
   }
 
   return (
     <>
       <div>
+        <Alert variant="danger" show={show} onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Invalid Inputs</Alert.Heading>
+          <ul>
+            <li>First name must be capitalized, have letters only, and a length between 2-30.</li>
+            <li>Last name is optional. If it is only one last name, it needs to be capitalized, 
+            have letters, and a length between 2-30. A last name with two names needs to be 
+            capitalized, have letters and can include a hyphen or space between the two last names, 
+            and a length between 2-30 for each one.</li>
+            <li>Email must be a valid email address.</li>
+            <li>Username must only have letters, numbers, and a length between 3-20.</li>
+            <li>Password must only have letters, numbers, or special characters (!@#$%^&*), and a length between 20-30.</li>
+          </ul>
+        </Alert>
+
         <form className="forms signup" id="signup" method="post" onSubmit={createAccount}>
             <h2 className="signup-title">Sign Up</h2>
 

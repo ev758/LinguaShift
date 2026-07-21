@@ -28,3 +28,13 @@ form input {
   margin-left: 30px;
   width: 380px;
 }
+
+.alert {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+ul {
+  text-align: left;
+}
