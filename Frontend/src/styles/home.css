@@ -66,3 +66,82 @@
   width: 500px;
   height: 300px;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  /* Login and Sign Up Buttons */
+  .account-buttons {
+    position: absolute;
+  }
+
+  .account-buttons a {
+    display: flex;
+    justify-content: center;
+    margin: 0px 10px 10px 0px;
+  }
+
+  /* Account Button */
+  .material-icons {
+    font-size: 25px;
+  }
+
+  .account {
+    position: absolute;
+  }
+
+  .dropdown-toggle {
+    width: 65px;
+    height: 62px;
+    border-radius: 30px;
+  }
+
+  /* Language Translation */
+  .language-container {
+    display: block;
+    justify-content: none;
+  }
+
+  .textbox {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  /* Login and Sign Up Buttons */
+  .account-buttons {
+    position: absolute;
+  }
+
+  /* Account Button */
+  .account {
+    position: absolute;
+  }
+
+  /* Language Translation */
+  .language-container {
+    display: block;
+    justify-content: none;
+  }
+
+  .textbox {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+  /* Login and Sign Up Buttons */
+  .account-buttons {
+    position: absolute;
+  }
+
+  /* Language Translation */
+  .textbox {
+    width: 350px;
+  }
+}
+
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+  /* Language Translation */
+  .textbox {
+    width: 450px;
+  }
+}

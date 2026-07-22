@@ -1,7 +1,7 @@
 body {
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   font: 18px var(--sans);
-  background-color: #E1EED7;
+  background: url(../assets/geometric_background.jpg) no-repeat center center fixed;
   text-align: center;
 }
 
@@ -37,4 +37,37 @@ form input {
 
 ul {
   text-align: left;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    /* Forms */
+    form input {
+      width: 80%;
+    }
+
+    .alert ul {
+      font-size: 10px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    /* Forms */
+    form input {
+      width: 80%;
+    }
+
+    .alert ul {
+      font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    /* Forms */
+    form input {
+      width: 80%;
+    }
+
+    .alert ul {
+      font-size: 15px;
+    }
 }

@@ -12,3 +12,15 @@
     caption-side: top;
     color: white;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    table {
+        font-size: 9px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+}
