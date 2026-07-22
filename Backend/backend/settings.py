@@ -2,6 +2,7 @@ from datetime import timedelta
 from dotenv import find_dotenv, load_dotenv
 import os
 from pathlib import Path
+from urllib.parse import urlparse, parse_qsl
 
 env = find_dotenv()
 
@@ -10,11 +11,8 @@ load_dotenv(env)
 #environment variables
 DJANGO_SERVER = os.getenv("DJANGO_SERVER")
 VITE = os.getenv("VITE")
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
+tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -93,11 +91,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
+        'NAME': tmpPostgres.path.replace('/', ''),
+        'USER': tmpPostgres.username,
+        'PASSWORD': tmpPostgres.password,
+        'HOST': tmpPostgres.hostname,
         'PORT': DB_PORT,
+        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
     }
 }
 
